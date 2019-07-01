@@ -15,23 +15,24 @@
   </head>
   <body>
         <h1> Nouveau Collaborateur</h1>
-
+<!-- <form  action ="viewCollab.jsp" method="post"> pour acces direct-->
+<form  method="post">
         <div class="container">
             <div class="row">
                 <div class="col-5">Nom</div>
-                <div class="col-7"><input type="text" name="name" required></div>
+                <div class="col-7"><input type="text" name="Name" required></div>
                 <br>
             </div>
             <div class="row-1">
             </div>
             <div class="row">
                 <div class="col-5">Prenom</div>
-                <div class="col-7"><input type="text" name="firstName" required></div>
+                <div class="col-7"><input type="text" name="FirstName" required></div>
                 <br>
             </div>
             <div class="row">
                 <div class="col-5">Date de naissance</div>
-                <div class="col-7"><input type="text" name="birthDate" required></div>
+                <div class="col-7"><input type="text" name="BirthDate" required></div>
                 <br>
             </div>
             <div class="row">
@@ -46,13 +47,31 @@
             </div>
             <div class="row">
                     <div class="col-7"></div>
-                    <div class="col-4"><input type="submit" value="Créer" >
-                    <input type="submit" formmethod="post" value="Submit using POST">
-                    </div>
+                    
+                    <input type="submit" formmethod="post" value="Create">
+                  
                     <br>
                 </div>
 </div>
-
+</form>
+<%
+  String[] userInfos = request.getParameterValues("user");
+  if (userInfos != null) {
+  %>
+    <h3>You have created an user with the following informations:</h3>
+    <ul>
+  <%
+      for (int i = 0; i < userInfos.length; ++i) {
+  %>
+        <li><%= userInfos[i] %></li>
+  <%
+      }
+  %>
+    </ul>
+    <a href="<%= request.getRequestURI() %>">BACK</a>
+  <%
+  }
+  %>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
