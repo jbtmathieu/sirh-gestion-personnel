@@ -19,34 +19,36 @@
         <div class="container">
             <div class="row">
                 <div class="col-5">Nom</div>
-                <div class="col-7"><input type="text"></div>
+                <div class="col-7"><input type="text" name="name" required></div>
                 <br>
             </div>
             <div class="row-1">
             </div>
             <div class="row">
                 <div class="col-5">Prenom</div>
-                <div class="col-7"><input type="text"></div>
+                <div class="col-7"><input type="text" name="firstName" required></div>
                 <br>
             </div>
             <div class="row">
                 <div class="col-5">Date de naissance</div>
-                <div class="col-7"><input type="text"></div>
+                <div class="col-7"><input type="text" name="birthDate" required></div>
                 <br>
             </div>
             <div class="row">
                 <div class="col-5">Adresse</div>
-                <div class="col-7"><input type="text"></div>
+                <div class="col-7"><input type="text" name="Address"required></div>
                 <br>
             </div>
             <div class="row">
                 <div class="col-5">Numéro de sécurité sociale</div>
-                <div class="col-7"><input type="text"></div>
+                <div class="col-7"><input type="text" name="ssNumber" required></div>
                 <br>
             </div>
             <div class="row">
                     <div class="col-7"></div>
-                    <div class="col-4"><input type="button" value="Créer"></div>
+                    <div class="col-4"><input type="submit" value="Créer" >
+                    <input type="submit" formmethod="post" value="Submit using POST">
+                    </div>
                     <br>
                 </div>
 </div>
