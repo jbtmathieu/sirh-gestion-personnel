@@ -2,7 +2,7 @@
 
 <%@ page import = "java.io.*,java.util.*" %>
 
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <html>
@@ -41,6 +41,8 @@
 
 		</tbody>
 		</table>
-   <a href="http://localhost:8080/sgp/collaborateurs/creer">Retour création utilisateur</a>
+   <a href="<c:url value="/collaborateurs/creer"/>">Retour création utilisateur</a> 
+
+   
    </body>
 </html>

@@ -57,7 +57,7 @@ public class CreerCollaborateursController extends HttpServlet{
 			while(ssNumber > 0) {
 				ssNumber = ssNumber / 10;
 				count = count + 1; 			
-			
+			}
            if (count != 15 ) {
         	   resp.setStatus(400);
                resp.getWriter().print("Les parametres sont incorrects: "+"Numéro de SS");
@@ -71,8 +71,14 @@ public class CreerCollaborateursController extends HttpServlet{
 	       	   String date = req.getParameter("BirthDate");
 	       	
 	       	   //convert String to LocalDate
-	       	   LocalDate birthDate= LocalDate.parse(date, formatter);
-
+	       	LocalDate birthDate=null;
+	       	  try {
+	       	   birthDate= LocalDate.parse(date, formatter);
+	       	  } catch (Exception E) {
+	       		resp.setStatus(400);
+ 	            resp.getWriter().print("Les parametres sont incorrects: "+"ce n'est pas une date valide");
+ 	          }
+	       	 
 	           StringBuilder email = new StringBuilder();
 	           email.append(req.getParameter("FirstName"));
 	           email.append(".");
@@ -95,7 +101,6 @@ public class CreerCollaborateursController extends HttpServlet{
 	           Constantes.COLLAB_SERVICE.sauvegarderCollaborateur(collab);
 	           req.getRequestDispatcher("/WEB-INF/views/collab/viewCollab.jsp").forward(req, resp);
            }
-			}
+	}
 		}
-}
 }

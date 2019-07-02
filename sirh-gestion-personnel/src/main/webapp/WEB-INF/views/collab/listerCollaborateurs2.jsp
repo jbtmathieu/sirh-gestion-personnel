@@ -2,9 +2,7 @@
 <%@page import="dev.sgp.entite.*"%>
 <%@page import="dev.sgp.util.*"%>
 <%@page import="java.util.List"%>
-<%@page language="java" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c-rt" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -44,31 +42,30 @@
 			--%>
 			<% 
 			List<Collaborateur> collaborateurs = Constantes.COLLAB_SERVICE.listerCollaborateurs();
-		
+		for(int i = 0; i < collaborateurs.size(); i++) {   
 			 %> 
-			 
-			 <c:forEach var="collab" items="${Constantes.COLLAB_SERVICE.listeCollaborateurs}" >
-     			${collaborateur}<br>
-     			<li><ul><li><c:out value="${listeCollab.get(collab).getNom()}"/></li>
-     			<%=collaborateurs.get(0).getPrenom() %>
-				<li><c:out value="${collab.getPrenom}"/></li>
-				<li><c:out value="${collab.DDN"/></li>
-				<li>${collab}.getAdresse()</li>
-				<li><c:out value="${collab.getEmailPro()"/></li>
-				<li>${collab.Matricule}</li>
-				<li><c:out value="${listeCollab}.get(collab).getDateHeureCreation()"/></li>
-				<li>${collab.getNumeroSecuriteSociale()}</li>
-				<li>${collab.getPhotoLoc()}</li></ul></li>
-			</c:forEach>
-			
+			<%-- >out.print("<li>"+collaborateurs.get(i)+"</li>"); --%>
 			<%
-		 %>
+			Collaborateur collab = collaborateurs.get(i);
+			%>
+			<li><ul><li><%=collab.getNom() %></li>
+			<li><%=collab.getPrenom() %></li>
+			<li><%=collab.getDateDeNaissance() %></li>
+			<li><%=collab.getAdresse() %></li>
+			<li><%=collab.getEmailPro() %></li>
+			<li><%=collab.getMatricule() %></li>
+			<li><%=collab.getDateHeureCreation() %></li>
+			<li><%=collab.getNumeroSecuriteSociale() %></li>
+			<li><%=collab.getPhotoLoc() %></li></ul></li>
+			<%
+		} %>
 		<%--
 		out.print("<li> Attribut ciblé:"+collaborateurs.get(0).getNom()+"</li>");
 		--%>
 				</ol>
 		
-<a href="<c:url value="/collaborateurs/creer"/>">Retour création utilisateur</a> 
+		
+		<a href="http://localhost:8080/sgp/collaborateurs/creer">CREER</a>
 	
 
 	</body>
