@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!doctype html>
-<html lang="en">
+<html>
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="css2.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
     <title>Form</title>
@@ -54,25 +53,8 @@
                 </div>
 </div>
 </form>
-<%
-  String[] userInfos = request.getParameterValues("user");
-  if (userInfos != null) {
-  %>
-    <h3>You have created an user with the following informations:</h3>
-    <ul>
-  <%
-      for (int i = 0; i < userInfos.length; ++i) {
-  %>
-        <li><%= userInfos[i] %></li>
-  <%
-      }
-  %>
-    </ul>
-    <a href="<%= request.getRequestURI() %>">BACK</a>
-  <%
-  }
-  %>
 
+<a href="http://localhost:8080/sgp/collaborateurs/lister">Lister</a>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -1,6 +1,10 @@
 package dev.sgp.web;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
@@ -17,7 +21,8 @@ import dev.sgp.util.Constantes;
 public class CreerCollaborateursController extends HttpServlet{
 	private CollaborateurService collabService = Constantes.COLLAB_SERVICE;
 	
-	private static double ID=0;
+	private static double STATIC_ID=0;
+	public static String SOCIETY_NAME="GreatCorp";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,10 +38,8 @@ public class CreerCollaborateursController extends HttpServlet{
 				throws ServletException, IOException {
 			// Checking values
 			//if(req.getParameter(BirthDate))
-			
-			
-			
-			/* In Method HTML parameters exploitation */
+			/*
+			// In Method HTML parameters exploitation 
 			Enumeration paramNames = req.getParameterNames();
 			resp.getWriter().write("Method Parameters \n");
             while(paramNames.hasMoreElements()) {
@@ -44,8 +47,55 @@ public class CreerCollaborateursController extends HttpServlet{
                resp.getWriter().write(paramName + " : " + req.getParameter(paramName) + "\n");
 
             }
-           // OR (jsp>)
-           req.getRequestDispatcher("/WEB-INF/views/collab/viewCollab.jsp").forward(req, resp);
-	}
+           */
+            
+			/*Checking ssNumber has 15 digits*/
+			
+			if(req.getParameter("ssNumber") != null) {
+			int count=0;
+			Long ssNumber=Long.parseLong(req.getParameter("ssNumber"));
+			while(ssNumber > 0) {
+				ssNumber = ssNumber / 10;
+				count = count + 1; 			
+			
+           if (count != 15 ) {
+        	   resp.setStatus(400);
+               resp.getWriter().print("Les parametres sont incorrects: "+"Numéro de SS");
+           }else {
+        	   
+        	  
+	           STATIC_ID++;
+	           
+	           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
+	       	   String date = req.getParameter("BirthDate");
+	       	
+	       	   //convert String to LocalDate
+	       	   LocalDate birthDate= LocalDate.parse(date, formatter);
+
+	           StringBuilder email = new StringBuilder();
+	           email.append(req.getParameter("FirstName"));
+	           email.append(".");
+	           email.append(req.getParameter("Name"));
+	           email.append("@");
+	           email.append(SOCIETY_NAME);
+	           email.append(".com");
+            
+	           Collaborateur collab = new Collaborateur(
+        		   STATIC_ID,
+        		   req.getParameter("Name"), 
+        		   req.getParameter("FirstName"), 
+        		   birthDate,
+        		   req.getParameter("Address"),
+        		   ssNumber,
+        		   email.toString(),
+        		   "/resources/img_avatar.png", //default photo
+        		   LocalDateTime.now(),
+        		   true); // active
+	           Constantes.COLLAB_SERVICE.sauvegarderCollaborateur(collab);
+	           req.getRequestDispatcher("/WEB-INF/views/collab/viewCollab.jsp").forward(req, resp);
+           }
+			}
+		}
+}
 }

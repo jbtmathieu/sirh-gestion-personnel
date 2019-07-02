@@ -13,7 +13,9 @@
          <h2>view Collab</h2>
          
          
-         
+ 
+   <img alt="photo" src="img_avatar2.png"/>   
+
         <%  out.print("JSP Parameters"); %>
          <br>
         <table class="table">
@@ -39,6 +41,6 @@
 
 		</tbody>
 		</table>
-   
+   <a href="http://localhost:8080/sgp/collaborateurs/creer">Retour création utilisateur</a>
    </body>
 </html>
